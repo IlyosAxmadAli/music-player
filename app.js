@@ -11,7 +11,9 @@ const title = document.querySelector(".title");
 const progressContainer = document.querySelector(".progress-container");
 const progres = document.querySelector(".progress");
 const volume = document.querySelector("#volume");
-const volumeIcon = document.querySelector(".fas");
+const volumeIcon = document.querySelector("#volume-icon");
+// const span = document.querySelector("span");
+// const form = document.querySelector("form");
 
 const songs = [
   "Doston Ergashev-Uylanamiz",
@@ -36,6 +38,7 @@ btnNext.addEventListener("click", nextSong);
 btnPrev.addEventListener("click", prevSong);
 audio.addEventListener("timeupdate", progress);
 progressContainer.addEventListener("click", setProgress);
+
 volume.addEventListener("input", () => {
   audio.volume = volume.value / 10;
 
@@ -54,17 +57,17 @@ volume.addEventListener("input", () => {
   }
 });
 
-// let add = true;
-// volumeIcon.addEventListener("click", () => {
-//   if (add) {
-//     volumeIcon.classList.add("fa-volume-mute");
-//     audio.volume = 0;
-//   } else {
-//     volumeIcon.classList.remove("fa-volume-mute");
-//     audio.volume = volume.value;
-//   }
-//   add = !add;
-// });
+let add = true;
+volumeIcon.addEventListener("click", () => {
+  if (add) {
+    volumeIcon.classList.toggle("fa-volume-mute");
+    audio.volume = 0;
+  } else {
+    volumeIcon.classList.toggle("fa-volume-mute");
+    audio.volume = volume.value / 10;
+  }
+  add = !add;
+});
 
 function nextSong() {
   songIndex++;
